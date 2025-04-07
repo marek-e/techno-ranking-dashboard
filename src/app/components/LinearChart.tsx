@@ -50,7 +50,7 @@ export function LinearChart({ trends }: { trends: Trend[] }) {
       >
         <CartesianGrid />
         <XAxis dataKey="date" />
-        <YAxis />
+        <YAxis reversed />
         <ChartTooltip
           cursor={true}
           content={<ChartTooltipContent activeItem={activeItem} />}

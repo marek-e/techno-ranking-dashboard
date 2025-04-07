@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Trend } from "../page";
+import LinearChart from "./LinearChart";
 
 export function TechnoSelection({
   formattedTrends,
@@ -92,7 +93,9 @@ export function TechnoSelection({
         </div>
       </div>
       <div className="border-l-2 border-gray-200 h-auto w-1" />
-      <h2 className="text-lg font-bold">Graph</h2>
+      <div className="flex gap-2 w-2/3">
+        <LinearChart trends={trends.filter((t) => t.selected)} />
+      </div>
     </div>
   );
 }

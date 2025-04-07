@@ -21,7 +21,7 @@ export function TechnoSelection({
 
   return (
     <div className="flex gap-2 bg-white p-4 rounded-lg">
-      <div className="flex flex-col gap-2 w-1/3">
+      <div className="flex flex-col gap-3 w-1/3">
         <h2 className="text-lg font-bold">Technologies</h2>
         <div className="flex gap-2">
           <button
@@ -56,16 +56,17 @@ export function TechnoSelection({
             .map((trend) => (
               <div
                 key={trend.name}
-                className="flex gap-2 items-center"
+                className="flex gap-2 items-center cursor-pointer"
                 style={{
                   color: trend.color,
                 }}
+                onClick={() => handleChange(trend)}
               >
                 <input
                   type="checkbox"
-                  className="w-4 h-4"
+                  className="w-4 h-4 cursor-pointer"
                   checked={true}
-                  onChange={() => handleChange(trend)}
+                  readOnly
                 />
                 <span>{trend.name}</span>
               </div>
@@ -76,16 +77,17 @@ export function TechnoSelection({
             .map((trend) => (
               <div
                 key={trend.name}
-                className="flex gap-2 items-center"
+                className="flex gap-2 items-center cursor-pointer"
                 style={{
                   color: trend.color,
                 }}
+                onClick={() => handleChange(trend)}
               >
                 <input
                   type="checkbox"
-                  className="w-4 h-4"
+                  className="w-4 h-4 cursor-pointer"
                   checked={false}
-                  onChange={() => handleChange(trend)}
+                  readOnly
                 />
                 <span>{trend.name}</span>
               </div>

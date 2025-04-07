@@ -118,6 +118,7 @@ function ChartTooltipContent({
   color,
   nameKey,
   labelKey,
+  activeItem,
 }: React.ComponentProps<typeof RechartsPrimitive.Tooltip> &
   React.ComponentProps<"div"> & {
     hideLabel?: boolean;
@@ -125,6 +126,7 @@ function ChartTooltipContent({
     indicator?: "line" | "dot" | "dashed";
     nameKey?: string;
     labelKey?: string;
+    activeItem?: null | string;
   }) {
   const { config } = useChart();
 
@@ -170,6 +172,14 @@ function ChartTooltipContent({
 
   const nestLabel = payload.length === 1 && indicator !== "dot";
 
+  const isActive = payload.find((item) => item.dataKey === activeItem);
+
+  let filteredPayload = payload;
+
+  if (isActive) {
+    filteredPayload = payload.filter((item) => item.dataKey === activeItem);
+  }
+
   return (
     <div
       className={cn(
@@ -179,7 +189,7 @@ function ChartTooltipContent({
     >
       {!nestLabel ? tooltipLabel : null}
       <div className="grid gap-1.5">
-        {payload.map((item, index) => {
+        {filteredPayload.map((item, index) => {
           const key = `${nameKey || item.name || item.dataKey || "value"}`;
           const itemConfig = getPayloadConfigFromPayload(config, item, key);
           const indicatorColor = color || item.payload.fill || item.color;

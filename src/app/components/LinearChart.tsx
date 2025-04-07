@@ -8,7 +8,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { Trend } from "../page";
-
+import { useState } from "react";
 export function LinearChart({ trends }: { trends: Trend[] }) {
   const ticks = ["2024-09-07", "2024-11-07", "2025-02-06", "2025-04-03"];
   const data = [];
@@ -33,6 +33,8 @@ export function LinearChart({ trends }: { trends: Trend[] }) {
     };
   });
 
+  const [activeItem, setActiveItem] = useState<string | null>(null);
+
   return (
     <ChartContainer
       config={chartConfig}
@@ -51,7 +53,7 @@ export function LinearChart({ trends }: { trends: Trend[] }) {
         <YAxis />
         <ChartTooltip
           cursor={true}
-          content={<ChartTooltipContent hideLabel />}
+          content={<ChartTooltipContent activeItem={activeItem} />}
         />
         {trends.map((trend) => (
           <Line
@@ -59,8 +61,10 @@ export function LinearChart({ trends }: { trends: Trend[] }) {
             dataKey={trend.name}
             type="linear"
             stroke={trend.color}
-            strokeWidth={2}
+            strokeWidth={trends.length > 10 ? 2 : 4}
             dot
+            onMouseEnter={() => setActiveItem(trend.name)}
+            onMouseLeave={() => setActiveItem(null)}
           />
         ))}
       </LineChart>

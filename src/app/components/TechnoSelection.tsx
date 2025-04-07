@@ -35,22 +35,16 @@ export function TechnoSelection({
         <h2 className="text-lg font-bold">Technologies</h2>
         <div className="flex gap-2">
           <button
-            className={`bg-amber-500 text-amber-950 px-4 py-2 rounded-md ${
-              trends.every((t) => t.selected) ? "opacity-50" : "cursor-pointer "
-            }`}
+            className={`bg-amber-500 text-amber-950 px-4 py-2 rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-auto`}
             onClick={() =>
-              setTrends((prev) =>
-                prev.map((t) => ({ ...t, selected: !t.selected }))
-              )
+              setTrends((prev) => prev.map((t) => ({ ...t, selected: true })))
             }
             disabled={trends.every((t) => t.selected)}
           >
             Select All
           </button>
           <button
-            className={`bg-amber-500 text-amber-950 px-4 py-2 rounded-md  ${
-              trends.every((t) => !t.selected) ? "opacity-50" : "cursor-pointer"
-            }`}
+            className={`bg-amber-500 text-amber-950 px-4 py-2 rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-auto`}
             onClick={() =>
               setTrends((prev) => prev.map((t) => ({ ...t, selected: false })))
             }

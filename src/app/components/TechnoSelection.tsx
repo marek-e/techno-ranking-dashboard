@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Trend } from "../page";
 import LinearChart from "./LinearChart";
 import debounce from "lodash.debounce";
+import { CheckboxItem } from "./CheckboxItem";
 
 export function TechnoSelection({
   formattedTrends,
@@ -75,43 +76,25 @@ export function TechnoSelection({
             .sort((a, b) => a.name.localeCompare(b.name))
             .filter((trend) => trend.selected)
             .map((trend) => (
-              <div
+              <CheckboxItem
                 key={trend.name}
-                className="flex gap-2 items-center cursor-pointer"
-                style={{
-                  color: trend.color,
-                }}
-                onClick={() => handleChange(trend)}
-              >
-                <input
-                  type="checkbox"
-                  className="w-4 h-4 cursor-pointer"
-                  checked={true}
-                  readOnly
-                />
-                <span>{trend.name}</span>
-              </div>
+                label={trend.name}
+                checked={true}
+                onChange={() => handleChange(trend)}
+                color={trend.color}
+              />
             ))}
           {trends
             .sort((a, b) => a.name.localeCompare(b.name))
             .filter((trend) => !trend.selected)
             .map((trend) => (
-              <div
+              <CheckboxItem
                 key={trend.name}
-                className="flex gap-2 items-center cursor-pointer"
-                style={{
-                  color: trend.color,
-                }}
-                onClick={() => handleChange(trend)}
-              >
-                <input
-                  type="checkbox"
-                  className="w-4 h-4 cursor-pointer"
-                  checked={false}
-                  readOnly
-                />
-                <span>{trend.name}</span>
-              </div>
+                label={trend.name}
+                checked={false}
+                onChange={() => handleChange(trend)}
+                color={trend.color}
+              />
             ))}
         </div>
       </div>

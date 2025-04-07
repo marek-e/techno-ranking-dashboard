@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Trend } from "../page";
 import LinearChart from "./LinearChart";
+import debounce from "lodash.debounce";
 
 export function TechnoSelection({
   formattedTrends,
@@ -19,6 +20,14 @@ export function TechnoSelection({
     );
   };
 
+  const handleMinRankChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTrends(
+      formattedTrends.map((t) => ({
+        ...t,
+        selected: t.range > Number(e.target.value),
+      }))
+    );
+  };
   return (
     <div className="flex gap-2 bg-white p-4 rounded-lg">
       <div className="flex flex-col gap-3 w-1/3">
@@ -48,6 +57,18 @@ export function TechnoSelection({
           >
             Deselect All
           </button>
+        </div>
+        <div className="flex gap-2 items-center">
+          <label htmlFor="min-rank-change" className="text-lg font-medium">
+            Min rank change
+          </label>
+          <input
+            type="number"
+            id="min-rank-change"
+            placeholder="Search"
+            className="border-2 border-gray-300 rounded-md p-2"
+            onChange={debounce(handleMinRankChange, 600)}
+          />
         </div>
         <div className="grid grid-cols-2 gap-2">
           {trends

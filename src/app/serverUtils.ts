@@ -4,8 +4,8 @@ import * as path from "path";
 
 import { parse } from "@fast-csv/parse";
 
-interface TechnoRankingCsvRow {
-  name: string;
+export interface TechnoRankingCsvRow {
+  Technology: string;
   "2024-09-07": number;
   "2024-11-07": number;
   "2025-02-06": number;

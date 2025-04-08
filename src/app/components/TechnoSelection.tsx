@@ -1,18 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { Trend } from "../page";
 import LinearChart from "./LinearChart";
 import debounce from "lodash.debounce";
 import { CheckboxItem } from "./CheckboxItem";
 
 export function TechnoSelection({
-  formattedTrends,
+  trends,
+  setTrends,
 }: {
-  formattedTrends: Trend[];
+  trends: Trend[];
+  setTrends: Dispatch<SetStateAction<Trend[]>>;
 }) {
-  const [trends, setTrends] = useState<Trend[]>(formattedTrends);
-
   const handleChange = (trend: Trend) => {
     setTrends((prev) =>
       prev.map((t) =>
@@ -23,7 +23,7 @@ export function TechnoSelection({
 
   const handleMinRankChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTrends(
-      formattedTrends.map((t) => ({
+      trends.map((t) => ({
         ...t,
         selected: t.range >= Number(e.target.value),
       }))

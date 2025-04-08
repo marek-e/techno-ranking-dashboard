@@ -1,4 +1,4 @@
-import { TechnoRankingCsvRow } from "./serverUtils";
+import { TechnoRankingCsvRow } from "./page";
 
 export function fixRankByDate(
   trends: TechnoRankingCsvRow[],

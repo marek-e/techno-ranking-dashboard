@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  // output: "export", // doesn't work with server actions
+  output: "export",
 };
 
 export default nextConfig;

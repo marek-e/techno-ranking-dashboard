@@ -25,7 +25,7 @@ export function TechnoSelection({
     setTrends(
       formattedTrends.map((t) => ({
         ...t,
-        selected: t.range > Number(e.target.value),
+        selected: t.range >= Number(e.target.value),
       }))
     );
   };

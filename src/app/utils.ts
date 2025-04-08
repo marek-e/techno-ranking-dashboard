@@ -4,16 +4,20 @@ export function fixRankByDate(
   trends: TechnoRankingCsvRow[],
   date: "2024-09-07" | "2024-11-07" | "2025-02-06" | "2025-04-03"
 ): { name: string; newRank: number }[] {
-  return trends
-    .map((trend) => ({
-      name: trend.Technology,
-      value: trend[date],
-    }))
-    .sort((a, b) => a.value - b.value)
-    .map((trend, index) => ({
-      name: trend.name,
-      newRank: index + 1,
-    }));
+  const trendsSorted = trends
+    .map((trend) => {
+      const value = parseInt(trend[date]);
+      return {
+        name: trend.Technology,
+        value: Number.isNaN(value) ? Infinity : value,
+      };
+    })
+    .toSorted((a, b) => a.value - b.value);
+
+  return trendsSorted.map((trend, index) => ({
+    name: trend.name,
+    newRank: index + 1,
+  }));
 }
 
 export function stringToColor(str: string) {

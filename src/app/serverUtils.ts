@@ -6,10 +6,10 @@ import { parse } from "@fast-csv/parse";
 
 export interface TechnoRankingCsvRow {
   Technology: string;
-  "2024-09-07": number;
-  "2024-11-07": number;
-  "2025-02-06": number;
-  "2025-04-03": number;
+  "2024-09-07": string;
+  "2024-11-07": string;
+  "2025-02-06": string;
+  "2025-04-03": string;
 }
 
 export async function getTrendsData(): Promise<TechnoRankingCsvRow[]> {
